@@ -47,6 +47,7 @@ function Cart() {
     items.splice(index, 1);
     setCartItem(items);
     updateTotalPrice(items);
+    localStorage.setItem("cartItems", JSON.stringify(items));
   }
 
   return (
