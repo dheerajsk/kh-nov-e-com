@@ -1,27 +1,25 @@
 import "./ProductCard.css";
 
 function ProductCard(values) {
-
-  function AddtoCart(){
-
+  function AddtoCart() {
     // cartItems is the key.
     const products = localStorage.getItem("cartItems");
 
     // if there are no cartitems
-    if(!products){
-      let cartItems=[];
+    if (!products) {
+      let cartItems = [];
       cartItems.push(values.item);
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    }else{
+    } else {
       // there are some existing data.
       let cartItems = JSON.parse(products);
       cartItems.push(values.item);
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
+    values.notify();
   }
 
-
-  const key = values.item.id+"svg";
+  const key = values.item.id + "svg";
 
   let stars = [];
   for (let i = 0; i < Number(values.item.rating.rate); i++) {
@@ -35,9 +33,9 @@ function ProductCard(values) {
       <div className="card-body">
         <p className="card-text">{values.item.category}</p>
         <p className="stars">
-          {stars.map((x,i) => (
+          {stars.map((x, i) => (
             <svg
-              key={key+i}
+              key={key + i}
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"

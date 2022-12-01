@@ -1,6 +1,12 @@
+import { useEffect, useState } from 'react';
 import './Header.css';
 
-function Header(){
+function Header(props){
+
+    // useEffect(()=>{
+    
+    // },[])
+
     return (
         <nav className="navbar navbar-expand-lg bg-blue">
         <div className="container-fluid">
@@ -15,7 +21,13 @@ function Header(){
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mb-2 mb-lg-0 links">
             <li className="nav-item">
-                <a className="nav-link" href="/cart">Cart</a>
+            <a href="/cart" type="button" className="btn btn-primary">
+              Cart &nbsp;
+              {
+      props.count>0 &&
+      <span className="badge text-bg-warning">{props.count}</span>
+              }
+          </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/register">Register</a>

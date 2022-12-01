@@ -27,7 +27,7 @@ function Cart() {
   // Step 3: takes new quantity and update cart items.
   function updatePrice(item, newQuantity) {
     let items = cartItems;
-    let cartItemIndex = items.findIndex((i) => i.name === item.name);
+    let cartItemIndex = items.findIndex((i) => i.title === item.title);
     items[cartItemIndex].qty = newQuantity;
     setCartItem(items);
     updateTotalPrice(items);
