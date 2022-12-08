@@ -7,18 +7,36 @@ function Register() {
 
   const navigate = useNavigate();
 
-  function handleFormSubmit(event) {
+  async function handleFormSubmit(event) {
 
     // console.log(JSON.stringify(user));
     // redirect to login.
-    navigate("/login");
+    try{
+      const result = await fetch(
+        "http://localhost:4100/api/auth/register",
+        {
+          method:"POST",
+          body:JSON.stringify(user),
+          headers:{
+            "Accept":"application/json",
+            "Content-Type":"application/json"
+          }
+        }
+      );
+      console.log(result);
+      navigate("/login");
+    }catch(err){
+      console.log(err);
+    }
+   
+
   }
 
   return (
     <div className="register-form">
       <h3>Please Register.</h3>
       <hr />
-      <form onSubmit={handleFormSubmit} action="">
+      <form>
         <div className="mb-3">
           <label htmlFor="" className="form-label">
             Email
@@ -154,7 +172,7 @@ function Register() {
             />
           </div>
         </div>
-        <button type="submit" className="float-end btn btn-success">
+        <button onClick={handleFormSubmit} type="submit" className="float-end btn btn-success">
           Register
         </button>
       </form>
